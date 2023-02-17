@@ -40,25 +40,25 @@ export default class CustomModal extends Component {
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="todo-title">Title</Label>
+              <Label for="todo-title">Наслов</Label>
               <Input
                 type="text"
                 id="todo-title"
                 name="title"
                 value={this.state.activeItem.title}
                 onChange={this.handleChange}
-                placeholder="Enter Todo Title"
+                placeholder="Напиши наслов"
               />
             </FormGroup>
             <FormGroup>
-              <Label for="todo-description">Description</Label>
+              <Label for="todo-description">Опис</Label>
               <Input
                 type="text"
                 id="todo-description"
                 name="description"
                 value={this.state.activeItem.description}
                 onChange={this.handleChange}
-                placeholder="Enter Todo description"
+                placeholder="Напиши опис"
               />
             </FormGroup>
             <FormGroup check>
@@ -69,7 +69,7 @@ export default class CustomModal extends Component {
                   checked={this.state.activeItem.completed}
                   onChange={this.handleChange}
                 />
-                Completed
+                Готово
               </Label>
             </FormGroup>
           </Form>
@@ -79,7 +79,7 @@ export default class CustomModal extends Component {
             color="success"
             onClick={() => onSave(this.state.activeItem)}
           >
-            Save
+            Зачувај
           </Button>
         </ModalFooter>
       </Modal>

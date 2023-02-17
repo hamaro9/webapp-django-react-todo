@@ -9,6 +9,15 @@ const instance = axios.create({
   headers: { 'X-CSRFToken': csrfToken }
 });
 
+const styles = {
+  fontFamily: 'Mulish, sans-serif',
+  fontSize: '14px',
+};
+
+const spanStyle = {
+  width: '50%',
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -78,20 +87,28 @@ class App extends Component {
     return this.setState({ viewCompleted: false });
   };
 
+  searchHandler = (event) => {
+    console.log(event.target.value)
+  }
+
   renderTabList = () => {
     return (
-      <div className="nav nav-tabs">
+      <div style={styles} className="nav nav-tabs tabs-list">
+        <form className={"form-inline my-2 my-lg-0"}>
+      <input onChange={this.searchHandler} className={"form-control mr-sm-2"} type="search" placeholder="Пребарај" aria-label="Search"></input>
+      <button className={"btn btn-outline-success my-2 my-sm-0"} type="submit">Пребарај</button>
+    </form>
         <span
           onClick={() => this.displayCompleted(true)}
           className={this.state.viewCompleted ? "nav-link active" : "nav-link"}
         >
-          Complete
+          Готови
         </span>
         <span
           onClick={() => this.displayCompleted(false)}
           className={this.state.viewCompleted ? "nav-link" : "nav-link active"}
         >
-          Incomplete
+          Неизвршени
         </span>
       </div>
     );
@@ -116,18 +133,18 @@ class App extends Component {
         >
           {item.title}
         </span>
-        <span>
+        <span style={spanStyle}>
           <button
-            className="btn btn-secondary mr-2"
+            className="btn btn-secondary mr-2 btn-block"
             onClick={() => this.editItem(item)}
           >
-            Edit
+            Измени
           </button>
           <button
-            className="btn btn-danger"
+            className="btn btn-outline-danger btn-block"
             onClick={() => this.handleDelete(item)}
           >
-            Delete
+            Избриши
           </button>
         </span>
       </li>
@@ -136,17 +153,17 @@ class App extends Component {
 
   render() {
     return (
-      <main className="container">
+      <main style={styles} className="container">
         <h1 className="text-white text-uppercase text-center my-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">
               <div className="mb-4">
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-outline-primary btn-block"
                   onClick={this.createItem}
                 >
-                  Add task
+                  Додади
                 </button>
               </div>
               {this.renderTabList()}
